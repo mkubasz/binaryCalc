@@ -60,7 +60,19 @@ long divide(unsigned long long a,unsigned long long b){
     std::bitset<8> second(b);
     std::bitset<8> oldSecond(b);
     std::bitset<8> result;
-    second<<=2;
+    std::bitset<8> counter(a);
+    int counter_a = 0,counter_b=0;
+    while(counter.to_ulong()){
+        counter >>=1;
+        counter_a++;
+    }
+    counter = second;
+    while(counter.to_ulong()){
+        counter >>=1;
+        counter_b++;
+    }
+    second<<=counter_a-counter_b;
+    
     do
      {
         if(first.to_ulong() >= second.to_ulong()){
